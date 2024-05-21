@@ -53,16 +53,29 @@ if ! command -v base64 > /dev/null; then
 	exit 1
 fi
 
-tnHost="aHR0cHM6Ly90aW55aW5zdGFsbGVyLnRvcAo="
-tnHost=$(echo "$tnHost" | base64 -d)
+downloadInstaller() {
+    installUrl=$(echo $1 | base64 -d -i)
+    echo "Downloading installer..."
+    rm -f /usr/local/tinstaller
+    wget -4 --no-check-certificate -qO /usr/local/tinstaller "$installUrl" || curl "$installUrl" -Lso /usr/local/tinstaller
+    if [ ! -s /usr/local/tinstaller ]; then
+        echo "Cannot to download installer!"
+        return 1
+    fi
+    return 0
+}
+
 mkdir -p /usr/local
-echo "Getting install script..."
-rm -f /usr/local/tinstaller
-wget -4 -q --no-check-certificate -O /usr/local/tinstaller $tnHost/install.sh || wget -6 -q --no-check-certificate -O /usr/local/tinstaller $tnHost/install.sh
+tnHosts=("aHR0cHM6Ly90aW55aW5zdGFsbGVyLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mMS5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mMi5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mMy5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mNC5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mNS5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mNi5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mNy5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mOC5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mOS5oaHViLnRvcC9pbnN0YWxsLnNo" "aHR0cHM6Ly9mMTAuaGh1Yi50b3AvaW5zdGFsbC5zaA==" )
+for tnHost in "${tnHosts[@]}"; do
+    downloadInstaller "$tnHost" && break
+done
+
 if [ ! -s /usr/local/tinstaller ]; then
     echo "Failed to download install script!"
     exit 1
 fi
+
 chmod +x /usr/local/tinstaller
 clear
 /usr/local/tinstaller "$@"
