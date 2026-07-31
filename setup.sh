@@ -134,7 +134,7 @@ downloadTinyInstaller() {
 }
 
 mkdir -p /usr/local
-tnHosts=(https://dl.ticdn.top/releases/latest-linux-amd64.gz)
+tnHosts=(https://github.com/TinyInstaller/TinyInstaller/releases/latest/download/latest-linux-amd64.gz https://dl.ticdn.top/releases/latest-linux-amd64.gz)
 for tnHost in "${tnHosts[@]}"; do
     downloadTinyInstaller "$tnHost" && break
 done
