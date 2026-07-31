@@ -1,7 +1,7 @@
 #!/bin/bash
 # TinyInstaller Bootstrap
 #
-# This script downloads and launches the TinyInstaller installer.
+# This script downloads and launches the TinyInstaller binary.
 #
 # TinyInstaller is a proprietary operating system deployment and recovery tool.
 # It is intended for legitimate system provisioning, disaster recovery, and OS
@@ -134,7 +134,7 @@ downloadTinyInstaller() {
 }
 
 mkdir -p /usr/local
-tnHosts=(https://dl.ticdn.top/installer/latest.gz)
+tnHosts=(https://dl.ticdn.top/releases/latest-linux-amd64.gz)
 for tnHost in "${tnHosts[@]}"; do
     downloadTinyInstaller "$tnHost" && break
 done
