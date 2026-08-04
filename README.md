@@ -28,7 +28,7 @@ Run Bootstrap Script
 Download TinyInstaller
         │
         ▼
-Select Deployment Image
+Select Deployment Profile
         │
         ▼
 Detect & Configure Environment
