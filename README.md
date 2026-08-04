@@ -1,10 +1,13 @@
 # TinyInstaller Releases
 
-Official release repository for **TinyInstaller**, an automated operating system deployment platform for supported VPS, cloud, and server environments.
+Official release repository for **TinyInstaller**, an automated operating system deployment platform for supported VPS and server environments.
 
-TinyInstaller helps users deploy or redeploy supported Windows and Linux environments on servers they own or control, including situations where provider recovery tools, VNC consoles, or automated installers are unavailable or limited.
+This repository hosts release artifacts used by the TinyInstaller service during user-initiated operating system deployment workflows. TinyInstaller helps users deploy or redeploy supported Windows and Linux environments on servers they own or control.
 
-TinyInstaller is an independent deployment automation service. It is not a hosting provider, cloud provider, managed service provider, or operating system vendor.
+For product information, deployment requirements, and service policies, visit:
+
+- https://tinyinstaller.top
+- https://docs.tinyinstaller.top
 
 ## About This Repository
 
@@ -14,7 +17,9 @@ This repository contains public release artifacts used by the TinyInstaller serv
 - Prebuilt TinyInstaller binaries
 - Supporting deployment files
 
-These artifacts are downloaded automatically by the generated TinyInstaller installation command. They are intended for use with the TinyInstaller service and generally should not be downloaded, modified, or executed directly.
+These artifacts are downloaded and executed only as part of a deployment workflow initiated by a TinyInstaller customer using an installation command generated through the TinyInstaller service.
+
+They are not general-purpose system utilities and should not be executed independently without following the official documentation.
 
 ## How TinyInstaller Works
 
